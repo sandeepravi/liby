@@ -5,7 +5,7 @@ end
 def parse(ast)
   ast = ast.first
   ast.map do |token|
-    if token_is_a_symbol?(token)
+    if token_is_a_function?(token)
       token.to_sym
     elsif token_is_an_integer?(token)
       token.to_i
@@ -17,7 +17,7 @@ def token_is_an_integer?(token)
   token.match(/[\-\+]?[0-9]+/)
 end
 
-def token_is_a_symbol?(token)
+def token_is_a_function?(token)
   ["+", "-", "/", "*"].include? token
 end
 
@@ -31,4 +31,10 @@ def analyzer(tokens)
 end
 
 code = open("sample.lisp", 'r'){|f| f.read }
-puts evaluate(parse(analyzer(lexer(code))))
+t1 = Time.now.to_f
+result = evaluate(parse(analyzer(lexer(code))))
+t2 = Time.now.to_f
+
+puts result
+
+puts "\n Time taken : #{(t2 - t1).to_f}"
