@@ -9,6 +9,8 @@ def parse(ast)
       token.to_sym
     elsif token_is_an_integer?(token)
       token.to_i
+    elsif token_is_a_float?(token)
+      token.to_f
     end
   end
 end
@@ -19,6 +21,10 @@ end
 
 def token_is_an_integer?(token)
   token.match(/[\-\+]?[0-9]+/)
+end
+
+def token_is_a_float?(token)
+  token.match(/[\-\+]?[0-9]+.[0-9]+/)
 end
 
 def token_is_a_function?(token)
