@@ -14,7 +14,7 @@ def parse(ast)
 end
 
 def strip_comments(str)
-  str.gsub(/^;.*\n/ , "")
+  str.gsub(/^;.*\\n/ , "")
 end
 
 def token_is_an_integer?(token)
