@@ -13,6 +13,10 @@ def parse(ast)
   end
 end
 
+def strip_comments(str)
+  str.gsub(/^;.*\n/ , "")
+end
+
 def token_is_an_integer?(token)
   token.match(/[\-\+]?[0-9]+/)
 end
@@ -30,11 +34,11 @@ def analyzer(tokens)
   raise "Incorrect Syntax"
 end
 
-code = open("sample.lisp", 'r'){|f| f.read }
-t1 = Time.now.to_f
-result = evaluate(parse(analyzer(lexer(code))))
-t2 = Time.now.to_f
-
-puts result
-
-puts "\n Time taken : #{(t2 - t1).to_f}"
+#code = open("sample.lisp", 'r'){|f| f.read }
+#t1 = Time.now.to_f
+#result = evaluate(parse(analyzer(lexer(strip_comments(code)))))
+#t2 = Time.now.to_f
+#
+#puts result
+#
+#puts "\n Time taken : #{(t2 - t1).to_f}"

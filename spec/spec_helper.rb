@@ -15,3 +15,10 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+module Utils
+
+  def execute(code)
+    evaluate(parse(analyzer(lexer(strip_comments(code)))))
+  end
+end
